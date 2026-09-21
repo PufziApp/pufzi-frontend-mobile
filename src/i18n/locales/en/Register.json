@@ -1,0 +1,17 @@
+{
+  "alreadyHaveAccount": "Already have an account?",
+  "backToLogin": "Back to sign in",
+  "checkEmailDescription": "We sent a confirmation link to",
+  "checkEmailTitle": "Check your email",
+  "confirmPassword": "Confirm password",
+  "description": "Create your PufZi account and easily book grooming appointments.",
+  "email": "Email",
+  "firstName": "First name",
+  "lastName": "Last name",
+  "login": "Sign in",
+  "password": "Password",
+  "passwordsDoNotMatch": "Passwords do not match.",
+  "register": "Create account",
+  "success": "Your account was created. Check your email to confirm it.",
+  "title": "Create an account"
+}

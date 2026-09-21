@@ -1,0 +1,17 @@
+{
+  "alreadyHaveAccount": "Már van fiókod?",
+  "backToLogin": "Vissza a bejelentkezéshez",
+  "checkEmailDescription": "Megerősítő linket küldtünk erre a címre:",
+  "checkEmailTitle": "Ellenőrizd az e-mailjeidet",
+  "confirmPassword": "Jelszó megerősítése",
+  "description": "Hozd létre PufZi-fiókodat, és foglalj egyszerűen kozmetikai időpontot.",
+  "email": "E-mail",
+  "firstName": "Keresztnév",
+  "lastName": "Vezetéknév",
+  "login": "Bejelentkezés",
+  "password": "Jelszó",
+  "passwordsDoNotMatch": "A jelszavak nem egyeznek.",
+  "register": "Fiók létrehozása",
+  "success": "A fiók létrejött. Ellenőrizd az e-mailjeidet a megerősítéshez.",
+  "title": "Fiók létrehozása"
+}

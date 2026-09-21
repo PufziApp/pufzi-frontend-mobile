@@ -1,0 +1,10 @@
+{
+  "backToLogin": "Back to sign in",
+  "confirmingDescription": "This will only take a few seconds.",
+  "confirmingTitle": "Confirming your email...",
+  "errorDescription": "The link is invalid, expired, or has already been used.",
+  "errorTitle": "We couldn't confirm your email",
+  "login": "Sign in",
+  "successDescription": "Your PufZi account is now active.",
+  "successTitle": "Email confirmed!"
+}

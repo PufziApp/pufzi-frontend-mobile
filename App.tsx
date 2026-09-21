@@ -1,39 +1,28 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
+import { useEffect } from 'react'
+import { QueryClientProvider } from '@tanstack/react-query'
+import { SafeAreaProvider } from 'react-native-safe-area-context'
 
-import { NewAppScreen } from '@react-native/new-app-screen'
-import { StatusBar, StyleSheet, useColorScheme, View } from 'react-native'
-import { SafeAreaProvider, useSafeAreaInsets } from 'react-native-safe-area-context'
+import { queryClient } from './src/api/queryClient'
+import { AppThemeProvider } from './src/theme/AppThemeProvider'
+import { RootNavigator } from './src/navigation/RootNavigator'
+import { configureGoogleAuth } from './src/config/googleAuth'
 
-function App() {
-  const isDarkMode = useColorScheme() === 'dark'
+import './src/i18n'
+
+const App = () => {
+  useEffect(() => {
+    configureGoogleAuth()
+  }, [])
 
   return (
     <SafeAreaProvider>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <AppContent />
+      <QueryClientProvider client={queryClient}>
+        <AppThemeProvider>
+          <RootNavigator />
+        </AppThemeProvider>
+      </QueryClientProvider>
     </SafeAreaProvider>
   )
 }
-
-function AppContent() {
-  const safeAreaInsets = useSafeAreaInsets()
-
-  return (
-    <View style={styles.container}>
-      <NewAppScreen templateFileName="App.tsx" safeAreaInsets={safeAreaInsets} />
-    </View>
-  )
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-})
 
 export default App

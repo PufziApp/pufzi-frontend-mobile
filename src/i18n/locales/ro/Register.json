@@ -1,0 +1,17 @@
+{
+  "alreadyHaveAccount": "Ai deja cont?",
+  "backToLogin": "Înapoi la conectare",
+  "checkEmailDescription": "Ți-am trimis un link de confirmare la adresa",
+  "checkEmailTitle": "Verifică-ți emailul",
+  "confirmPassword": "Confirmă parola",
+  "description": "Creează-ți contul PufZi și programează simplu vizitele la salon.",
+  "email": "Email",
+  "firstName": "Prenume",
+  "lastName": "Nume",
+  "login": "Conectează-te",
+  "password": "Parolă",
+  "passwordsDoNotMatch": "Parolele nu coincid.",
+  "register": "Creează cont",
+  "success": "Contul a fost creat. Verifică emailul pentru confirmare.",
+  "title": "Creează un cont"
+}

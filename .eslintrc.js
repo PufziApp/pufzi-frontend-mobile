@@ -7,6 +7,7 @@ module.exports = {
 
   rules: {
     'prettier/prettier': 'error',
+    'react-native/no-inline-styles': 'off',
 
     'i18next/no-literal-string': [
       'error',
@@ -25,7 +26,7 @@ module.exports = {
       },
     ],
 
-    'no-console': 'error',
+    //'no-console': 'error',
 
     '@typescript-eslint/no-explicit-any': 'warn',
 

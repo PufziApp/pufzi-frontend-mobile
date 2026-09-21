@@ -1,0 +1,32 @@
+{
+  "features": {
+    "booking": {
+      "description": "Alege ziua și ora care ți se potrivesc",
+      "title": "Programează simplu"
+    },
+    "pet": {
+      "description": "Servicii și prețuri clare pentru animalul tău",
+      "title": "Alege serviciul"
+    },
+    "salons": {
+      "description": "Găsește locul potrivit din apropierea ta",
+      "title": "Descoperă saloane"
+    }
+  },
+  "intro": {
+    "confirmed": "Programare confirmată",
+    "date": "Astăzi · 14:30",
+    "description": "Descoperă saloane, alege serviciul potrivit și programează-l în câteva momente.",
+    "petDescription": "Golden Retriever",
+    "petName": "Max",
+    "salon": "Paw Studio · 1,2 km",
+    "service": "Grooming complet",
+    "title": "Programarea lui. Mult mai simplă."
+  },
+  "start": "Începe",
+  "welcome": {
+    "description": "Găsește salonul potrivit și fă o programare fără telefoane și fără timp pierdut.",
+    "footer": "Rapid pentru tine. Mai mult timp pentru el.",
+    "title": "Totul pentru programarea lui, într-un singur loc."
+  }
+}
