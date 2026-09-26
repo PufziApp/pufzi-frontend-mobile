@@ -1,0 +1,10 @@
+{
+  "backToLogin": "Înapoi la conectare",
+  "confirmingDescription": "Mai durează doar câteva secunde.",
+  "confirmingTitle": "Confirmăm adresa de email...",
+  "errorDescription": "Linkul este invalid, a expirat sau a fost deja folosit.",
+  "errorTitle": "Nu am putut confirma emailul",
+  "login": "Conectează-te",
+  "successDescription": "Contul tău PufZi este acum activ.",
+  "successTitle": "Email confirmat!"
+}

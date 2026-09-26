@@ -1,0 +1,32 @@
+{
+  "features": {
+    "booking": {
+      "description": "Válaszd ki a megfelelő napot és időpontot",
+      "title": "Foglalj egyszerűen"
+    },
+    "pet": {
+      "description": "Átlátható szolgáltatások és árak kedvencednek",
+      "title": "Válassz szolgáltatást"
+    },
+    "salons": {
+      "description": "Találd meg a megfelelő helyet a közeledben",
+      "title": "Fedezz fel szalonokat"
+    }
+  },
+  "intro": {
+    "confirmed": "Időpont megerősítve",
+    "date": "Ma · 14:30",
+    "description": "Fedezz fel szalonokat, válaszd ki a megfelelő szolgáltatást, és foglalj néhány pillanat alatt.",
+    "petDescription": "Golden Retriever",
+    "petName": "Max",
+    "salon": "Paw Studio · 1,2 km",
+    "service": "Teljes kozmetika",
+    "title": "Az időpontja. Sokkal egyszerűbben."
+  },
+  "start": "Kezdés",
+  "welcome": {
+    "description": "Találd meg a megfelelő kisállatkozmetikát, és foglalj időpontot telefonálás és időveszteség nélkül.",
+    "footer": "Gyors neked. Több idő neki.",
+    "title": "Minden, ami az időpontfoglaláshoz kell, egy helyen."
+  }
+}

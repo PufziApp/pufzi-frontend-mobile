@@ -1,0 +1,32 @@
+{
+  "features": {
+    "booking": {
+      "description": "Choose the day and time that works for you",
+      "title": "Book with ease"
+    },
+    "pet": {
+      "description": "Clear services and prices for your pet",
+      "title": "Choose a service"
+    },
+    "salons": {
+      "description": "Find the right place near you",
+      "title": "Discover salons"
+    }
+  },
+  "intro": {
+    "confirmed": "Booking confirmed",
+    "date": "Today · 2:30 PM",
+    "description": "Discover salons, choose the right service and book in just a few moments.",
+    "petDescription": "Golden Retriever",
+    "petName": "Max",
+    "salon": "Paw Studio · 1.2 km",
+    "service": "Full grooming",
+    "title": "Their appointment. Made simple."
+  },
+  "start": "Get started",
+  "welcome": {
+    "description": "Find the right grooming salon and book without calls or wasted time.",
+    "footer": "Quick for you. More time for them.",
+    "title": "Everything for their appointment, in one place."
+  }
+}

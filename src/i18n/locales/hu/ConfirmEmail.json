@@ -1,0 +1,10 @@
+{
+  "backToLogin": "Vissza a bejelentkezéshez",
+  "confirmingDescription": "Ez csak néhány másodpercet vesz igénybe.",
+  "confirmingTitle": "Az e-mail-cím megerősítése...",
+  "errorDescription": "A link érvénytelen, lejárt vagy már felhasználták.",
+  "errorTitle": "Nem sikerült megerősíteni az e-mail-címet",
+  "login": "Bejelentkezés",
+  "successDescription": "A PufZi-fiókod mostantól aktív.",
+  "successTitle": "E-mail megerősítve!"
+}
