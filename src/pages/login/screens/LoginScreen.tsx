@@ -1,31 +1,33 @@
+import { useState } from 'react'
 import type { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { Image, KeyboardAvoidingView, Platform, ScrollView, View } from 'react-native'
 import { Text, useTheme } from 'react-native-paper'
 import { useTranslation } from 'react-i18next'
 
 import { AppControls } from '../../../components/AppControls/AppControls'
-import { signInWithGoogle } from '../../../services/auth/googleAuthService'
 import type { RootStackParamList } from '../../../navigation/navigationTypes'
+import { signInWithGoogle } from '../../../services/auth/googleAuthService'
+import { useGoogleAuth } from '../../../services/auth/hooks/useGoogleAuth'
+import { useAuth } from '../../../services/auth/hooks/useAuth'
 
 import { LoginForm } from '../components/LoginForm'
-import { useGoogleAuth } from '../../../services/auth/hooks/useGoogleAuth'
-import { useState } from 'react'
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Login'>
 
 export const LoginScreen = ({ navigation }: Props) => {
   const theme = useTheme()
   const { t } = useTranslation('Login')
+  const { setAuthSession } = useAuth()
 
-  const [isGoogleLoading, setIsGoogleLoading] = useState<boolean>(false)
+  const [isGoogleLoading, setIsGoogleLoading] = useState(false)
 
   const googleLoginMutation = useGoogleAuth()
 
   const handleGoogleAuth = async () => {
-    const idToken = await signInWithGoogle()
-
     try {
       setIsGoogleLoading(true)
+
+      const idToken = await signInWithGoogle()
 
       if (!idToken) {
         return
@@ -36,8 +38,8 @@ export const LoginScreen = ({ navigation }: Props) => {
           idToken,
         },
         {
-          onSuccess: () => {
-            navigation.navigate('Home')
+          onSuccess: async session => {
+            await setAuthSession(session)
           },
         },
       )
@@ -127,8 +129,8 @@ export const LoginScreen = ({ navigation }: Props) => {
             }}
             onGoogleLogin={handleGoogleAuth}
             isGoogleLoading={isGoogleLoading || googleLoginMutation.isPending}
-            onLoginSucess={() => {
-              navigation.navigate('Home')
+            onLoginSuccess={async session => {
+              await setAuthSession(session)
             }}
           />
         </View>

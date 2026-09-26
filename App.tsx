@@ -6,6 +6,7 @@ import { queryClient } from './src/api/queryClient'
 import { AppThemeProvider } from './src/theme/AppThemeProvider'
 import { RootNavigator } from './src/navigation/RootNavigator'
 import { configureGoogleAuth } from './src/config/googleAuth'
+import { AuthProvider } from './src/services/auth/context/AuthProvider'
 
 import './src/i18n'
 
@@ -18,7 +19,9 @@ const App = () => {
     <SafeAreaProvider>
       <QueryClientProvider client={queryClient}>
         <AppThemeProvider>
-          <RootNavigator />
+          <AuthProvider>
+            <RootNavigator />
+          </AuthProvider>
         </AppThemeProvider>
       </QueryClientProvider>
     </SafeAreaProvider>

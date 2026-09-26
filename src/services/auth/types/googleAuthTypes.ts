@@ -1,9 +1,7 @@
-export type GoogleAuthRequest = {
+import type { AuthSession } from './authTypes'
+
+export type GoogleLoginRequest = {
   idToken: string
 }
 
-export type GoogleAuthResponse = {
-  accessToken: string
-  refreshToken: string
-  accessTokenExpiresAt: string
-}
+export type GoogleLoginResponse = AuthSession

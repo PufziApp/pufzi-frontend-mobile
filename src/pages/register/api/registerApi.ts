@@ -1,10 +1,10 @@
-import { api } from '../../../api/api'
+import { authApi } from '../../../api/authApi'
 
 import { registerEndpoints } from '../config/registerEndpoints'
-import { RegisterRequest, RegisterResponse } from '../types/registerTypes'
+import type { RegisterRequest, RegisterResponse } from '../types/registerTypes'
 
 export const registerApi = async (data: RegisterRequest): Promise<RegisterResponse> => {
-  const response = await api.post<RegisterResponse>(registerEndpoints.register, data)
+  const response = await authApi.post<RegisterResponse>(registerEndpoints.register, data)
 
   return response.data
 }

@@ -71,7 +71,7 @@ export const OnboardingScreen = ({ onFinished }: Props) => {
           mode="contained"
           onPress={finish}
           buttonColor={theme.colors.primary}
-          textColor="#FFFFFF"
+          textColor={theme.colors.surface}
           contentStyle={{
             height: 58,
           }}

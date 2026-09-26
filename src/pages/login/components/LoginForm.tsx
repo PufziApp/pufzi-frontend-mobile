@@ -1,11 +1,12 @@
 import { Controller, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Pressable, View } from 'react-native'
-import { Button, Divider, Text, useTheme } from 'react-native-paper'
+import { Button, Checkbox, Divider, Text, useTheme } from 'react-native-paper'
 import { useTranslation } from 'react-i18next'
 
 import { PufziTextInput } from '../../../components/PufziTextInput/PufziTextInput'
 import { GoogleAuthButton } from '../../../components/GoogleAuthButton/GoogleAuthButton'
+import type { AuthSession } from '../../../services/auth/types/authTypes'
 
 import { useLogin } from '../hooks/useLogin'
 import { loginSchema, type LoginFormValues } from '../schemas/loginSchema'
@@ -15,7 +16,7 @@ type Props = {
   onRegister: () => void
   onGoogleLogin: () => void
   isGoogleLoading: boolean
-  onLoginSucess: () => void
+  onLoginSuccess: (session: AuthSession) => void
 }
 
 export const LoginForm = ({
@@ -23,7 +24,7 @@ export const LoginForm = ({
   onRegister,
   onGoogleLogin,
   isGoogleLoading,
-  onLoginSucess,
+  onLoginSuccess,
 }: Props) => {
   const { t } = useTranslation('Login')
   const theme = useTheme()
@@ -38,13 +39,14 @@ export const LoginForm = ({
     defaultValues: {
       email: '',
       password: '',
+      rememberMe: false,
     },
   })
 
   const onSubmit = (data: LoginFormValues) => {
     loginMutation.mutate(data, {
-      onSuccess: () => {
-        onLoginSucess()
+      onSuccess: session => {
+        onLoginSuccess(session)
       },
     })
   }
@@ -93,23 +95,51 @@ export const LoginForm = ({
         )}
       />
 
-      <Pressable
-        onPress={onForgotPassword}
+      <View
         style={{
-          alignSelf: 'flex-end',
+          flexDirection: 'row',
+          alignItems: 'center',
+          justifyContent: 'space-between',
           marginTop: -6,
         }}
       >
-        <Text
-          variant="bodyMedium"
-          style={{
-            color: theme.colors.primary,
-            fontWeight: '600',
-          }}
-        >
-          {t('forgotPassword')}
-        </Text>
-      </Pressable>
+        <Controller
+          control={control}
+          name="rememberMe"
+          render={({ field: { onChange, value } }) => (
+            <Pressable
+              onPress={() => onChange(!value)}
+              style={{
+                flexDirection: 'row',
+                alignItems: 'center',
+              }}
+            >
+              <Checkbox status={value ? 'checked' : 'unchecked'} color={theme.colors.primary} />
+
+              <Text
+                variant="bodyMedium"
+                style={{
+                  color: theme.colors.onSurface,
+                }}
+              >
+                {t('rememberMe')}
+              </Text>
+            </Pressable>
+          )}
+        />
+
+        <Pressable onPress={onForgotPassword}>
+          <Text
+            variant="bodyMedium"
+            style={{
+              color: theme.colors.primary,
+              fontWeight: '600',
+            }}
+          >
+            {t('forgotPassword')}
+          </Text>
+        </Pressable>
+      </View>
 
       <Button
         mode="contained"
@@ -117,7 +147,7 @@ export const LoginForm = ({
         loading={loginMutation.isPending}
         disabled={loginMutation.isPending}
         buttonColor={theme.colors.primary}
-        textColor="#FFFFFF"
+        textColor={theme.colors.surface}
         contentStyle={{
           height: 56,
         }}
