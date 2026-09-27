@@ -1,17 +1,20 @@
 {
   "alreadyHaveAccount": "Ai deja cont?",
   "backToLogin": "Înapoi la conectare",
+  "brandName": "Pufzi",
   "checkEmailDescription": "Ți-am trimis un link de confirmare la adresa",
   "checkEmailTitle": "Verifică-ți emailul",
   "confirmPassword": "Confirmă parola",
-  "description": "Creează-ți contul PufZi și programează simplu vizitele la salon.",
+  "description": "Creează-ți contul Pufzi și programează simplu vizitele la salon.",
   "email": "Email",
   "firstName": "Prenume",
+  "groomingBadge": "Programări pentru grooming",
   "lastName": "Nume",
   "login": "Conectează-te",
   "password": "Parolă",
   "passwordsDoNotMatch": "Parolele nu coincid.",
   "register": "Creează cont",
+  "secureRegister": "Contul și datele tale sunt protejate",
   "success": "Contul a fost creat. Verifică emailul pentru confirmare.",
   "title": "Creează un cont"
 }

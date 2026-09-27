@@ -1,12 +1,15 @@
 {
+  "brandName": "Pufzi",
   "continueWithGoogle": "Continue with Google",
   "description": "Sign in to continue to Pufzi.",
   "email": "Email",
   "forgotPassword": "Forgot your password?",
+  "groomingBadge": "Grooming appointments",
   "login": "Sign in",
   "noAccount": "Don't have an account?",
   "password": "Password",
   "register": "Create an account",
   "rememberMe": "Remember me",
+  "secureLogin": "Your data is protected",
   "title": "Welcome back"
 }

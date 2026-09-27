@@ -1,12 +1,15 @@
 {
+  "brandName": "Pufzi",
   "continueWithGoogle": "Continuă cu Google",
   "description": "Conectează-te pentru a continua în Pufzi.",
   "email": "Email",
   "forgotPassword": "Ai uitat parola?",
+  "groomingBadge": "Programări pentru grooming",
   "login": "Conectează-te",
   "noAccount": "Nu ai cont?",
   "password": "Parolă",
   "register": "Creează un cont",
   "rememberMe": "Ține-mă minte",
+  "secureLogin": "Datele tale sunt protejate",
   "title": "Bine ai revenit"
 }
