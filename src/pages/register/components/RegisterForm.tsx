@@ -1,11 +1,13 @@
 import { useEffect, useRef } from 'react'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Controller, useForm } from 'react-hook-form'
-import { Animated, Pressable, View } from 'react-native'
-import { Button, Divider, Text, useTheme } from 'react-native-paper'
+import { Animated, View } from 'react-native'
 import { useTranslation } from 'react-i18next'
 
 import { GoogleAuthButton } from '../../../components/GoogleAuthButton/GoogleAuthButton'
+import { PufziButton } from '../../../components/PufziButton/PufziButton'
+import { PufziDividerText } from '../../../components/PufziDividerText/PufziDividerText'
+import { PufziFormFooter } from '../../../components/PufziFormFooter/PufziFormFooter'
 import { PufziTextInput } from '../../../components/PufziTextInput/PufziTextInput'
 
 import { useRegister } from '../hooks/useRegister'
@@ -24,10 +26,8 @@ export const RegisterForm = ({
   isGoogleLoading,
   onRegisterSuccess,
 }: Props) => {
-  const theme = useTheme()
   const { t } = useTranslation('Register')
   const { t: tCommon } = useTranslation('Common')
-
   const registerMutation = useRegister()
 
   const {
@@ -46,10 +46,9 @@ export const RegisterForm = ({
   })
 
   const itemAnims = useRef([0, 1, 2, 3, 4, 5, 6].map(() => new Animated.Value(0))).current
-  const buttonScale = useRef(new Animated.Value(1)).current
 
   useEffect(() => {
-    Animated.stagger(
+    const animation = Animated.stagger(
       90,
       itemAnims.map(anim =>
         Animated.spring(anim, {
@@ -59,7 +58,11 @@ export const RegisterForm = ({
           tension: 50,
         }),
       ),
-    ).start()
+    )
+
+    animation.start()
+
+    return () => animation.stop()
   }, [itemAnims])
 
   const enterStyle = (anim: Animated.Value) => ({
@@ -84,24 +87,6 @@ export const RegisterForm = ({
 
   const handleRegister = () => {
     handleSubmit(onSubmit)()
-  }
-
-  const handlePressIn = () => {
-    Animated.spring(buttonScale, {
-      toValue: 0.95,
-      useNativeDriver: true,
-      speed: 40,
-      bounciness: 8,
-    }).start()
-  }
-
-  const handlePressOut = () => {
-    Animated.spring(buttonScale, {
-      toValue: 1,
-      useNativeDriver: true,
-      speed: 40,
-      bounciness: 10,
-    }).start()
   }
 
   return (
@@ -223,74 +208,16 @@ export const RegisterForm = ({
       </Animated.View>
 
       <Animated.View style={enterStyle(itemAnims[4])}>
-        <Animated.View
-          style={{
-            transform: [{ scale: buttonScale }],
-          }}
-        >
-          <Pressable onPressIn={handlePressIn} onPressOut={handlePressOut} onPress={handleRegister}>
-            <Button
-              mode="contained"
-              onPress={handleRegister}
-              loading={registerMutation.isPending}
-              disabled={registerMutation.isPending}
-              buttonColor={theme.colors.primary}
-              textColor={theme.colors.surface}
-              contentStyle={{
-                height: 56,
-              }}
-              style={{
-                borderRadius: 18,
-                shadowColor: theme.colors.primary,
-                shadowOpacity: 0.35,
-                shadowRadius: 12,
-                shadowOffset: { width: 0, height: 6 },
-                elevation: 6,
-              }}
-              labelStyle={{
-                fontSize: 15,
-                fontWeight: '800',
-              }}
-            >
-              {t('register')}
-            </Button>
-          </Pressable>
-        </Animated.View>
+        <PufziButton
+          label={t('register')}
+          onPress={handleRegister}
+          loading={registerMutation.isPending}
+          disabled={registerMutation.isPending}
+        />
       </Animated.View>
 
-      <Animated.View
-        style={[
-          enterStyle(itemAnims[5]),
-          {
-            flexDirection: 'row',
-            alignItems: 'center',
-            gap: 12,
-            marginVertical: 3,
-          },
-        ]}
-      >
-        <Divider
-          style={{
-            flex: 1,
-            backgroundColor: theme.colors.outline,
-          }}
-        />
-
-        <Text
-          variant="bodySmall"
-          style={{
-            color: theme.colors.onSurfaceVariant,
-          }}
-        >
-          {tCommon('or')}
-        </Text>
-
-        <Divider
-          style={{
-            flex: 1,
-            backgroundColor: theme.colors.outline,
-          }}
-        />
+      <Animated.View style={enterStyle(itemAnims[5])}>
+        <PufziDividerText text={tCommon('or')} />
       </Animated.View>
 
       <Animated.View style={enterStyle(itemAnims[5])}>
@@ -301,43 +228,8 @@ export const RegisterForm = ({
         />
       </Animated.View>
 
-      <Animated.View
-        style={[
-          enterStyle(itemAnims[6]),
-          {
-            flexDirection: 'row',
-            justifyContent: 'center',
-            alignItems: 'center',
-            gap: 5,
-            marginTop: 4,
-          },
-        ]}
-      >
-        <Text
-          variant="bodyMedium"
-          style={{
-            color: theme.colors.onSurfaceVariant,
-          }}
-        >
-          {t('alreadyHaveAccount')}
-        </Text>
-
-        <Pressable
-          onPress={onLogin}
-          style={{
-            paddingVertical: 6,
-          }}
-        >
-          <Text
-            variant="bodyMedium"
-            style={{
-              color: theme.colors.primary,
-              fontWeight: '800',
-            }}
-          >
-            {t('login')}
-          </Text>
-        </Pressable>
+      <Animated.View style={enterStyle(itemAnims[6])}>
+        <PufziFormFooter text={t('alreadyHaveAccount')} actionText={t('login')} onPress={onLogin} />
       </Animated.View>
     </View>
   )
