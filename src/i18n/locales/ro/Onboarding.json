@@ -1,42 +1,74 @@
 {
+  "error": "",
+  "final": {
+    "description": "",
+    "salons": "",
+    "services": "",
+    "time": "",
+    "title": ""
+  },
+  "intro": {
+    "petDescription": "",
+    "petName": ""
+  },
   "onboarding": {
-    "grooming": {
-      "title": "Grooming complet",
-      "subtitle": "Max se pregătește...",
-      "chips": { "bath": "Baie", "cut": "Tuns", "brush": "Periere" }
-    },
     "booking": {
+      "pickTime": "Alege ora",
       "salon": "Paw Studio · 1,2 km",
       "service": "Grooming complet · Pentru Max",
-      "today": "Astăzi",
-      "pickTime": "Alege ora",
       "slotA": "10:00",
-      "slotB": "14:30"
+      "slotB": "14:30",
+      "today": "Astăzi"
     },
     "confirmed": {
       "title": "Programare confirmată",
       "when": "Astăzi · 14:30"
     },
-    "headings": {
-      "grooming": "Îl facem frumos.",
-      "booking": "Alege ora potrivită.",
-      "done": "Gata. Chiar așa simplu."
-    },
-    "steps": {
-      "animal": "Animal",
-      "grooming": "Grooming",
-      "booking": "Programare",
-      "confirmed": "Confirmat"
-    },
     "final": {
-      "title": "Programarea lui.\nMult mai simplă.",
-      "subtitle": "Descoperă saloane, alege serviciul potrivit și programează-l în câteva momente.",
       "cards": {
         "nearby": "Saloane aproape",
         "services": "Servicii clare",
         "time": "Ora ta liberă"
       },
-      "cta": "Începe"
+      "cta": "Începe",
+      "subtitle": "Descoperă saloane, alege serviciul potrivit și programează-l în câteva momente.",
+      "title": "Programarea lui.\nMult mai simplă."
+    },
+    "grooming": {
+      "chips": {
+        "bath": "Baie",
+        "brush": "Periere",
+        "cut": "Tuns"
+      },
+      "subtitle": "Max se pregătește...",
+      "title": "Grooming complet"
+    },
+    "headings": {
+      "booking": "Alege ora potrivită.",
+      "done": "Gata. Chiar așa simplu.",
+      "grooming": "Îl facem frumos."
+    },
+    "steps": {
+      "animal": "Animal",
+      "booking": "Programare",
+      "confirmed": "Confirmat",
+      "grooming": "Grooming"
     }
+  },
+  "start": "",
+  "story": {
+    "animal": "",
+    "booking": "",
+    "chooseTime": "",
+    "confirmed": "",
+    "confirmedDate": "",
+    "confirmedTitle": "",
+    "firstTime": "",
+    "grooming": "",
+    "salon": "",
+    "selectedTime": "",
+    "serviceDescription": "",
+    "serviceTitle": "",
+    "today": ""
   }
 }
