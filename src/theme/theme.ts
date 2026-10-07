@@ -12,7 +12,7 @@ const themes = {
 
 export const getTheme = (themeColor: ThemeColor, mode: ThemeMode): MD3Theme => {
   const colors = themes[themeColor][mode]
-  const baseTheme = mode === 'dark' ? MD3DarkTheme : MD3LightTheme
+  const baseTheme = mode === 'light' ? MD3LightTheme : MD3DarkTheme
 
   return {
     ...baseTheme,
@@ -29,12 +29,15 @@ export const getTheme = (themeColor: ThemeColor, mode: ThemeMode): MD3Theme => {
 
       onBackground: colors.text,
       onSurface: colors.text,
+      onSurfaceVariant: colors.textSecondary,
 
-      secondary: colors.textSecondary,
+      secondary: colors.success,
+      tertiary: colors.warning,
 
       error: colors.error,
 
       outline: colors.outline,
+      outlineVariant: colors.outline,
     },
   }
 }

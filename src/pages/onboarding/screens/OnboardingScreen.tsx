@@ -1,102 +1,85 @@
-import { useEffect, useRef } from 'react'
-import { Animated, View } from 'react-native'
-import { Button, Text, useTheme } from 'react-native-paper'
-import { useTranslation } from 'react-i18next'
-
-import { preferenceStorage } from '../../../storage/preferencesStorage'
+import { useState } from 'react'
+import { View, type LayoutChangeEvent } from 'react-native'
+import { useTheme } from 'react-native-paper'
 
 import { OnboardingSlide } from '../components/OnboardingSlide'
+import { useOnboardingAnimation } from '../hooks/useOnboardingAnimation'
+import { DESIGN_HEIGHT, DESIGN_WIDTH } from '../onboarding.constants'
+import { styles } from '../onboarding.styles'
 
 type Props = {
   onFinished: () => void
+  fontFamily?: string
 }
 
-export const OnboardingScreen = ({ onFinished }: Props) => {
+export const OnboardingScreen = ({ onFinished, fontFamily }: Props) => {
   const theme = useTheme()
-  const { t } = useTranslation('Onboarding')
+  const { colors } = theme
 
-  const actionsOpacity = useRef(new Animated.Value(0)).current
-  const actionsTranslateY = useRef(new Animated.Value(18)).current
+  const { timeline, finished, setGroomingLoaded, setBookingLoaded } = useOnboardingAnimation()
 
-  useEffect(() => {
-    const animation = Animated.sequence([
-      Animated.delay(1500),
+  const [layout, setLayout] = useState({
+    width: DESIGN_WIDTH,
+    height: DESIGN_HEIGHT,
+  })
 
-      Animated.parallel([
-        Animated.timing(actionsOpacity, {
-          toValue: 1,
-          duration: 350,
-          useNativeDriver: true,
-        }),
+  const scale = layout.width / DESIGN_WIDTH
 
-        Animated.spring(actionsTranslateY, {
-          toValue: 0,
-          tension: 45,
-          friction: 9,
-          useNativeDriver: true,
-        }),
-      ]),
-    ])
+  const regularText = {
+    color: colors.onSurfaceVariant,
+    fontFamily: fontFamily ?? theme.fonts.bodyMedium.fontFamily,
+  }
 
-    animation.start()
+  const strongText = {
+    color: colors.onSurface,
+    fontFamily: fontFamily ?? theme.fonts.titleLarge.fontFamily,
+  }
 
-    return () => {
-      animation.stop()
+  const cardAppearance = {
+    backgroundColor: colors.surface,
+    borderColor: colors.outlineVariant,
+    shadowColor: colors.onBackground,
+  }
+
+  const handleLayout = (event: LayoutChangeEvent) => {
+    const { width, height } = event.nativeEvent.layout
+
+    if (width <= 0 || height <= 0) {
+      return
     }
-  }, [actionsOpacity, actionsTranslateY])
 
-  const finish = async () => {
-    await preferenceStorage.completeOnboarding()
-    onFinished()
+    setLayout(current =>
+      current.width === width && current.height === height
+        ? current
+        : {
+            width,
+            height,
+          },
+    )
   }
 
   return (
     <View
-      style={{
-        flex: 1,
-        backgroundColor: theme.colors.background,
-      }}
+      onLayout={handleLayout}
+      style={[
+        styles.root,
+        {
+          backgroundColor: colors.surface,
+        },
+      ]}
     >
-      <OnboardingSlide />
-
-      <Animated.View
-        style={{
-          opacity: actionsOpacity,
-          transform: [{ translateY: actionsTranslateY }],
-          paddingHorizontal: 24,
-          paddingBottom: 32,
-        }}
-      >
-        <Button
-          mode="contained"
-          onPress={finish}
-          buttonColor={theme.colors.primary}
-          textColor={theme.colors.surface}
-          contentStyle={{
-            height: 58,
-          }}
-          style={{
-            borderRadius: 18,
-          }}
-          labelStyle={{
-            fontSize: 16,
-            fontWeight: '800',
-          }}
-        >
-          {t('start')}
-        </Button>
-
-        <Text
-          variant="bodySmall"
-          style={{
-            color: theme.colors.onSurfaceVariant,
-            textAlign: 'center',
-            marginTop: 14,
-          }}
-        >
-          {t('welcome.footer')}
-        </Text>
-      </Animated.View>
+      <OnboardingSlide
+        timeline={timeline}
+        theme={theme}
+        scale={scale}
+        finished={finished}
+        regularText={regularText}
+        strongText={strongText}
+        cardAppearance={cardAppearance}
+        onStart={onFinished}
+        onGroomingLoaded={() => setGroomingLoaded(true)}
+        onBookingLoaded={() => setBookingLoaded(true)}
+      />
     </View>
   )
 }

@@ -10,7 +10,7 @@ type Props = {
 
 export const AppThemeProvider = ({ children }: Props) => {
   const [themeColor, setThemeColor] = useState<ThemeColor>('sage')
-  const [mode, setMode] = useState<ThemeMode>('dark')
+  const [mode, setMode] = useState<ThemeMode>('light')
 
   const theme = getTheme(themeColor, mode)
 
