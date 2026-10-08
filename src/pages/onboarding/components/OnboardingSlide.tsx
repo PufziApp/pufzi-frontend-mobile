@@ -1,109 +1,204 @@
-import { Animated, View } from 'react-native'
-import { useTranslation } from 'react-i18next'
+import { Animated, Image, Text, View } from 'react-native'
+import { Icon, type MD3Theme } from 'react-native-paper'
 
+import {
+  ASSETS,
+  CONFIRMATION_BACKGROUND,
+  COPY,
+  DESIGN_HEIGHT,
+  DESIGN_WIDTH,
+} from '../onboarding.constants'
+import { styles } from '../onboarding.styles'
+import type { OnboardingCardAppearance, OnboardingTextStyle } from '../onboarding.types'
 import { OnboardingBookingCard } from './OnboardingBookingCard'
 import { OnboardingCard } from './OnboardingCard'
+import { OnboardingConfirmationCard } from './OnboardingConfirmationCard'
 import { OnboardingIntroContent } from './OnboardingIntroContent'
-import { OnboardingLogo } from './OnboardingLogo'
-import { useOnboardingAnimation } from '../hooks/useOnboardingAnimation'
+import { OnboardingStoryProgress } from './OnboardingStoryProgress'
 
-export const OnboardingSlide = () => {
-  const { t } = useTranslation('Onboarding')
-  const animation = useOnboardingAnimation()
+type Props = {
+  timeline: Animated.Value
+  theme: MD3Theme
+  scale: number
+  finished: boolean
+  regularText: OnboardingTextStyle
+  strongText: OnboardingTextStyle
+  cardAppearance: OnboardingCardAppearance
+  onStart: () => void
+  onGroomingLoaded: () => void
+  onBookingLoaded: () => void
+}
+
+const interpolate = (value: Animated.Value, inputRange: number[], outputRange: number[]) =>
+  value.interpolate({
+    inputRange,
+    outputRange,
+    extrapolate: 'clamp',
+  })
+
+const appear = (value: Animated.Value, start: number, duration = 300) =>
+  interpolate(value, [start, start + duration], [0, 1])
+
+const sceneOpacity = (value: Animated.Value, start: number, end: number) =>
+  start === 0
+    ? interpolate(value, [0, end, end + 300], [1, 1, 0])
+    : interpolate(value, [start, start + 300, end, end + 300], [0, 1, 1, 0])
+
+const BRAND_NAME = 'Pufzi'
+
+export const OnboardingSlide = ({
+  timeline,
+  theme,
+  scale,
+  finished,
+  regularText,
+  strongText,
+  cardAppearance,
+  onStart,
+  onGroomingLoaded,
+}: Props) => {
+  const { colors } = theme
 
   return (
     <View
       style={{
-        flex: 1,
-        justifyContent: 'center',
-        paddingHorizontal: 24,
+        width: '100%',
+        height: DESIGN_HEIGHT * scale,
+        overflow: 'hidden',
       }}
     >
       <View
-        style={{
-          height: 390,
-          justifyContent: 'center',
-        }}
+        style={[
+          styles.canvas,
+          {
+            backgroundColor: colors.surface,
+            left: (DESIGN_WIDTH * scale - DESIGN_WIDTH) / 2,
+            top: 0,
+            transform: [{ scale }],
+          },
+        ]}
       >
-        <OnboardingLogo
-          opacity={animation.logo.opacity}
-          scale={animation.logo.scale}
-          translateY={animation.logo.translateY}
+        <Image
+          source={ASSETS.hero}
+          resizeMode="cover"
+          onLoad={onGroomingLoaded}
+          style={styles.hero}
         />
 
-        <View
-          style={{
-            height: 205,
-            position: 'relative',
-          }}
-        >
-          <Animated.View
-            style={{
-              position: 'absolute',
-              top: 0,
-              left: 0,
-              width: '72%',
-              opacity: animation.pet.opacity,
-              transform: [{ translateX: animation.pet.translateX }, { rotate: '-4deg' }],
-            }}
+        <View pointerEvents="none" style={styles.logoPosition}>
+          <View
+            style={[
+              styles.logoBadge,
+              {
+                backgroundColor: colors.surface,
+              },
+            ]}
           >
-            <OnboardingCard
-              icon="paw"
-              iconSize={25}
-              title={t('intro.petName')}
-              description={t('intro.petDescription')}
-            />
-          </Animated.View>
+            <Image source={ASSETS.logo} resizeMode="contain" style={styles.logo} />
 
-          <Animated.View
-            style={{
-              position: 'absolute',
-              top: 66,
-              right: 0,
-              width: '76%',
-              opacity: animation.salon.opacity,
-              transform: [{ translateX: animation.salon.translateX }, { rotate: '4deg' }],
-            }}
-          >
-            <OnboardingCard
-              icon="content-cut"
-              iconSize={23}
-              title={t('intro.service')}
-              description={t('intro.salon')}
-            />
-          </Animated.View>
-
-          <Animated.View
-            style={{
-              position: 'absolute',
-              top: 132,
-              left: 18,
-              right: 18,
-              opacity: animation.booking.opacity,
-              transform: [
-                { translateY: animation.booking.translateY },
-                { scale: animation.booking.scale },
-              ],
-            }}
-          >
-            <OnboardingBookingCard
-              title={t('intro.confirmed')}
-              description={t('intro.date')}
-              checkScale={animation.booking.checkScale}
-            />
-          </Animated.View>
+            <Text
+              style={[
+                styles.logoName,
+                {
+                  color: colors.onSurface,
+                  fontFamily: theme.fonts.titleLarge.fontFamily,
+                },
+              ]}
+            >
+              {BRAND_NAME}
+            </Text>
+          </View>
         </View>
-      </View>
 
-      <Animated.View
-        style={{
-          opacity: animation.content.opacity,
-          transform: [{ translateY: animation.content.translateY }],
-          marginTop: 10,
-        }}
-      >
-        <OnboardingIntroContent title={t('intro.title')} description={t('intro.description')} />
-      </Animated.View>
+        <View
+          style={[
+            styles.bottomPanel,
+            {
+              backgroundColor: colors.surface,
+            },
+          ]}
+        />
+
+        <OnboardingCard
+          timeline={timeline}
+          theme={theme}
+          cardAppearance={cardAppearance}
+          regularText={regularText}
+          strongText={strongText}
+          opacity={sceneOpacity(timeline, 0, 1800)}
+        />
+
+        <OnboardingBookingCard
+          timeline={timeline}
+          theme={theme}
+          cardAppearance={cardAppearance}
+          regularText={regularText}
+          strongText={strongText}
+          opacity={sceneOpacity(timeline, 2150, 4400)}
+        />
+
+        <OnboardingConfirmationCard
+          timeline={timeline}
+          theme={theme}
+          cardAppearance={cardAppearance}
+          regularText={regularText}
+          strongText={strongText}
+          opacity={sceneOpacity(timeline, 4550, 6100)}
+        />
+
+        <OnboardingStoryProgress timeline={timeline} theme={theme} strongText={strongText} />
+
+        <Animated.View
+          pointerEvents="none"
+          accessibilityElementsHidden={!finished}
+          importantForAccessibility={finished ? 'auto' : 'no-hide-descendants'}
+          style={[
+            styles.confirmationPill,
+            {
+              backgroundColor: CONFIRMATION_BACKGROUND[theme.dark ? 'dark' : 'light'],
+              borderColor: colors.secondary,
+              shadowColor: colors.secondary,
+              shadowOpacity: 0,
+              shadowRadius: 0,
+              elevation: 0,
+              opacity: appear(timeline, 6200, 300),
+              transform: [
+                {
+                  translateY: interpolate(timeline, [6200, 6500], [48, 0]),
+                },
+              ],
+            },
+          ]}
+        >
+          <View
+            style={[
+              styles.pillIcon,
+              {
+                backgroundColor: colors.secondary,
+              },
+            ]}
+          >
+            <Icon source="check" size={23} color={colors.onSecondary} />
+          </View>
+
+          <View>
+            <Animated.Text style={[styles.pillTitle, strongText]}>{COPY.confirmed}</Animated.Text>
+
+            <Animated.Text style={[styles.pillSubtitle, regularText]}>
+              {COPY.appointment}
+            </Animated.Text>
+          </View>
+        </Animated.View>
+
+        <OnboardingIntroContent
+          timeline={timeline}
+          theme={theme}
+          regularText={regularText}
+          strongText={strongText}
+          finished={finished}
+          onStart={onStart}
+        />
+      </View>
     </View>
   )
 }

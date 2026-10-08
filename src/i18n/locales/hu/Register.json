@@ -1,17 +1,50 @@
 {
   "alreadyHaveAccount": "Már van fiókod?",
-  "backToLogin": "Vissza a bejelentkezéshez",
-  "checkEmailDescription": "Megerősítő linket küldtünk erre a címre:",
-  "checkEmailTitle": "Ellenőrizd az e-mailjeidet",
   "confirmPassword": "Jelszó megerősítése",
-  "description": "Hozd létre PufZi-fiókodat, és foglalj egyszerűen kozmetikai időpontot.",
+  "description": "Hozz létre egy fiókot magadnak és kedvencednek.",
   "email": "E-mail",
+  "errors": {
+    "description": "Próbáld újra. Ha már van fiókod, jelentkezz be.",
+    "title": "Nem sikerült befejezni a regisztrációt"
+  },
   "firstName": "Keresztnév",
   "lastName": "Vezetéknév",
   "login": "Bejelentkezés",
+  "or": "vagy",
   "password": "Jelszó",
-  "passwordsDoNotMatch": "A jelszavak nem egyeznek.",
+  "passwordRequirements": {
+    "met": "{{requirement}} — teljesítve",
+    "minLength": "Legalább 8 karakter",
+    "notMet": "{{requirement}} — még nincs teljesítve",
+    "number": "Legalább egy számjegy",
+    "special": "Legalább egy speciális karakter",
+    "uppercase": "Legalább egy nagybetű (A–Z)"
+  },
+  "passwordStrength": {
+    "accessibility": "Jelszó erőssége: {{strength}}",
+    "empty": "Válassz jelszót",
+    "fair": "Közepes",
+    "good": "Jó",
+    "hint": "Az erősebb jelszóhoz használj legalább 12 karaktert.",
+    "strong": "Erős",
+    "title": "Jelszó erőssége",
+    "weak": "Gyenge"
+  },
   "register": "Fiók létrehozása",
-  "success": "A fiók létrejött. Ellenőrizd az e-mailjeidet a megerősítéshez.",
-  "title": "Fiók létrehozása"
+  "secureRegister": "Adataid biztonságban vannak",
+  "terms": {
+    "hint": "A folytatáshoz fogadd el a feltételeket, Google használata esetén is.",
+    "label": "Elfogadom a felhasználási feltételeket, és megerősítem, hogy elolvastam az adatkezelési tájékoztatót."
+  },
+  "title": "Ismerjük meg egymást!",
+  "validation": {
+    "confirmPasswordRequired": "Erősítsd meg a jelszavad.",
+    "emailInvalid": "Adj meg egy érvényes e-mail-címet.",
+    "emailRequired": "Add meg az e-mail-címed.",
+    "firstNameRequired": "Add meg a keresztneved.",
+    "lastNameRequired": "Add meg a vezetékneved.",
+    "passwordRequirements": "Teljesítsd az alábbi jelszókövetelményeket.",
+    "passwordsDoNotMatch": "A jelszavak nem egyeznek.",
+    "termsRequired": "A folytatáshoz fogadd el a feltételeket."
+  }
 }

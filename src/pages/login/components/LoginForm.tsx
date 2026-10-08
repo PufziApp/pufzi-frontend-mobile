@@ -1,14 +1,20 @@
-import { Controller, useForm } from 'react-hook-form'
+import { useRef } from 'react'
+import { Controller, useForm, useWatch } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Pressable, View } from 'react-native'
-import { Button, Checkbox, Divider, Text, useTheme } from 'react-native-paper'
+import { Keyboard, Pressable, View } from 'react-native'
+import { Text, TextInput, useTheme } from 'react-native-paper'
 import { useTranslation } from 'react-i18next'
 
-import { PufziTextInput } from '../../../components/PufziTextInput/PufziTextInput'
 import { GoogleAuthButton } from '../../../components/GoogleAuthButton/GoogleAuthButton'
+import { PufziButton } from '../../../components/PufziButton/PufziButton'
+import { PufziDividerText } from '../../../components/PufziDividerText/PufziDividerText'
+import { PufziFormAlert } from '../../../components/PufziFormAlert/PufziFormAlert'
+import { PufziFormFooter } from '../../../components/PufziFormFooter/PufziFormFooter'
+import { PufziTextInput } from '../../../components/PufziTextInput/PufziTextInput'
 import type { AuthSession } from '../../../services/auth/types/authTypes'
 
 import { useLogin } from '../hooks/useLogin'
+import { useLoginFeedback } from '../hooks/useLoginFeedback'
 import { loginSchema, type LoginFormValues } from '../schemas/loginSchema'
 
 type Props = {
@@ -16,7 +22,7 @@ type Props = {
   onRegister: () => void
   onGoogleLogin: () => void
   isGoogleLoading: boolean
-  onLoginSuccess: (session: AuthSession) => void
+  onLoginSuccess: (session: AuthSession) => void | Promise<void>
 }
 
 export const LoginForm = ({
@@ -33,190 +39,134 @@ export const LoginForm = ({
   const {
     control,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm<LoginFormValues>({
-    resolver: zodResolver(loginSchema()),
+    resolver: zodResolver(
+      loginSchema({
+        emailRequired: t('validation.emailRequired'),
+        invalidEmail: t('validation.invalidEmail'),
+        passwordTooShort: t('validation.passwordTooShort'),
+      }),
+    ),
     defaultValues: {
       email: '',
       password: '',
-      rememberMe: false,
+      rememberMe: true,
     },
   })
 
-  const onSubmit = (data: LoginFormValues) => {
-    loginMutation.mutate(data, {
-      onSuccess: session => {
-        onLoginSuccess(session)
-      },
-    })
+  const email = useWatch({ control, name: 'email' })
+  const { feedback, isPaused, remainingSeconds, clearFeedback, recordFailure, recordSuccess } =
+    useLoginFeedback(email)
+  const submitting = useRef(false)
+  const busy = isSubmitting || loginMutation.isPending || isGoogleLoading
+
+  const onSubmit = async (data: LoginFormValues) => {
+    if (submitting.current || isGoogleLoading || isPaused) {
+      return
+    }
+
+    submitting.current = true
+    clearFeedback()
+    Keyboard.dismiss()
+
+    try {
+      const session = await loginMutation.mutateAsync({ ...data, rememberMe: true })
+      recordSuccess(data.email)
+      try {
+        await onLoginSuccess(session)
+      } catch {
+        recordFailure(undefined, data.email)
+      }
+    } catch (error: unknown) {
+      recordFailure(error, data.email)
+    } finally {
+      submitting.current = false
+    }
   }
 
   const handleLogin = () => {
-    handleSubmit(onSubmit)()
+    if (!busy && !isPaused && !submitting.current) {
+      handleSubmit(onSubmit)()
+    }
   }
+
+  const isWarning = feedback?.kind === 'locked' || feedback?.kind === 'rateLimited'
 
   return (
     <View
       style={{
-        gap: 16,
+        gap: 12,
       }}
     >
-      <Controller
-        control={control}
-        name="email"
-        render={({ field: { onChange, onBlur, value } }) => (
-          <PufziTextInput
-            label={t('email')}
-            value={value}
-            onChangeText={onChange}
-            onBlur={onBlur}
-            keyboardType="email-address"
-            autoCapitalize="none"
-            autoCorrect={false}
-            errorMessage={errors.email?.message}
-          />
-        )}
-      />
-
-      <Controller
-        control={control}
-        name="password"
-        render={({ field: { onChange, onBlur, value } }) => (
-          <PufziTextInput
-            label={t('password')}
-            value={value}
-            onChangeText={onChange}
-            onBlur={onBlur}
-            autoCapitalize="none"
-            autoCorrect={false}
-            isPassword
-            errorMessage={errors.password?.message}
-          />
-        )}
-      />
-
-      <View
-        style={{
-          flexDirection: 'row',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          marginTop: -6,
-        }}
-      >
+      <View>
         <Controller
           control={control}
-          name="rememberMe"
-          render={({ field: { onChange, value } }) => (
-            <Pressable
-              onPress={() => onChange(!value)}
-              style={{
-                flexDirection: 'row',
-                alignItems: 'center',
+          name="email"
+          render={({ field: { onChange, onBlur, value } }) => (
+            <PufziTextInput
+              appearance="auth"
+              placeholder={t('email')}
+              left={<TextInput.Icon icon="email-outline" color={theme.colors.onSurfaceVariant} />}
+              value={value}
+              onChangeText={text => {
+                clearFeedback()
+                onChange(text)
               }}
-            >
-              <Checkbox status={value ? 'checked' : 'unchecked'} color={theme.colors.primary} />
-
-              <Text
-                variant="bodyMedium"
-                style={{
-                  color: theme.colors.onSurface,
-                }}
-              >
-                {t('rememberMe')}
-              </Text>
-            </Pressable>
+              onBlur={onBlur}
+              keyboardType="email-address"
+              autoCapitalize="none"
+              autoCorrect={false}
+              disabled={busy}
+              accessibilityLabel={t('email')}
+              autoComplete="email"
+              error={Boolean(errors.email)}
+              errorMessage={errors.email?.message}
+            />
           )}
         />
-
-        <Pressable onPress={onForgotPassword}>
-          <Text
-            variant="bodyMedium"
-            style={{
-              color: theme.colors.primary,
-              fontWeight: '600',
-            }}
-          >
-            {t('forgotPassword')}
-          </Text>
-        </Pressable>
       </View>
 
-      <Button
-        mode="contained"
-        onPress={handleLogin}
-        loading={loginMutation.isPending}
-        disabled={loginMutation.isPending}
-        buttonColor={theme.colors.primary}
-        textColor={theme.colors.surface}
-        contentStyle={{
-          height: 56,
-        }}
-        style={{
-          borderRadius: 16,
-        }}
-        labelStyle={{
-          fontSize: 15,
-          fontWeight: '700',
-        }}
-      >
-        {t('login')}
-      </Button>
-
-      <View
-        style={{
-          flexDirection: 'row',
-          alignItems: 'center',
-          gap: 12,
-          marginVertical: 4,
-        }}
-      >
-        <Divider
-          style={{
-            flex: 1,
-          }}
-        />
-
-        <Text
-          variant="bodySmall"
-          style={{
-            color: theme.colors.onSurfaceVariant,
-          }}
-        >
-          {t('or')}
-        </Text>
-
-        <Divider
-          style={{
-            flex: 1,
-          }}
+      <View>
+        <Controller
+          control={control}
+          name="password"
+          render={({ field: { onChange, onBlur, value } }) => (
+            <PufziTextInput
+              appearance="auth"
+              placeholder={t('password')}
+              left={<TextInput.Icon icon="lock-outline" color={theme.colors.onSurfaceVariant} />}
+              value={value}
+              onChangeText={text => {
+                clearFeedback()
+                onChange(text)
+              }}
+              onBlur={onBlur}
+              autoCapitalize="none"
+              autoCorrect={false}
+              isPassword
+              disabled={busy}
+              accessibilityLabel={t('password')}
+              autoComplete="current-password"
+              returnKeyType="go"
+              onSubmitEditing={handleLogin}
+              error={Boolean(errors.password)}
+              errorMessage={errors.password?.message}
+            />
+          )}
         />
       </View>
 
-      <GoogleAuthButton
-        onPress={onGoogleLogin}
-        loading={isGoogleLoading}
-        disabled={isGoogleLoading}
-      />
-
-      <View
-        style={{
-          flexDirection: 'row',
-          justifyContent: 'center',
-          alignItems: 'center',
-          gap: 5,
-          marginTop: 4,
-        }}
-      >
-        <Text
-          variant="bodyMedium"
+      <View style={{ alignItems: 'flex-end', marginTop: -8, marginBottom: -4 }}>
+        <Pressable
+          onPress={onForgotPassword}
+          accessibilityRole="button"
           style={{
-            color: theme.colors.onSurfaceVariant,
+            minHeight: 44,
+            justifyContent: 'center',
+            paddingVertical: 8,
           }}
         >
-          {t('noAccount')}
-        </Text>
-
-        <Pressable onPress={onRegister}>
           <Text
             variant="bodyMedium"
             style={{
@@ -224,9 +174,38 @@ export const LoginForm = ({
               fontWeight: '700',
             }}
           >
-            {t('register')}
+            {t('forgotPassword')}
           </Text>
         </Pressable>
+      </View>
+
+      {feedback && (
+        <PufziFormAlert
+          title={t(isWarning ? 'errors.waitTitle' : 'errors.title')}
+          message={t(`errors.${feedback.kind}`)}
+          tone={isWarning ? 'warning' : 'error'}
+        />
+      )}
+
+      <View>
+        <PufziButton
+          label={isPaused ? t('retryIn', { seconds: remainingSeconds }) : t('login')}
+          onPress={handleLogin}
+          loading={isSubmitting || loginMutation.isPending}
+          disabled={busy || isPaused}
+        />
+      </View>
+
+      <View>
+        <PufziDividerText text={t('or')} />
+      </View>
+
+      <View>
+        <GoogleAuthButton onPress={onGoogleLogin} loading={isGoogleLoading} disabled={busy} />
+      </View>
+
+      <View>
+        <PufziFormFooter text={t('noAccount')} actionText={t('register')} onPress={onRegister} />
       </View>
     </View>
   )

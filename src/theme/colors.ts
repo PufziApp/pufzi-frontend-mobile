@@ -6,6 +6,8 @@ export const orangeColors = {
     background: '#FFF8F0',
     surface: '#FFFDF9',
 
+    white: '#FFFFFF',
+
     text: '#1A1008',
     textSecondary: '#8B6048',
 
@@ -22,6 +24,8 @@ export const orangeColors = {
 
     background: '#1C1410',
     surface: '#261C14',
+
+    white: '#FFFFFF',
 
     text: '#FDF4E7',
     textSecondary: '#A0785A',
@@ -42,6 +46,8 @@ export const sageColors = {
     background: '#F5F0E8',
     surface: '#FDFCF7',
 
+    white: '#FFFFFF',
+
     text: '#1A1A14',
     textSecondary: '#6B6050',
 
@@ -58,6 +64,8 @@ export const sageColors = {
 
     background: '#1A2420',
     surface: '#1F2E28',
+
+    white: '#FFFFFF',
 
     text: '#F0EDE5',
     textSecondary: '#7A9880',

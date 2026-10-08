@@ -1,17 +1,50 @@
 {
   "alreadyHaveAccount": "Ai deja cont?",
-  "backToLogin": "Înapoi la conectare",
-  "checkEmailDescription": "Ți-am trimis un link de confirmare la adresa",
-  "checkEmailTitle": "Verifică-ți emailul",
   "confirmPassword": "Confirmă parola",
-  "description": "Creează-ți contul PufZi și programează simplu vizitele la salon.",
+  "description": "Creează un cont pentru tine și animăluțul tău.",
   "email": "Email",
+  "errors": {
+    "description": "Încearcă din nou. Dacă ai deja un cont, conectează-te.",
+    "title": "Nu am putut finaliza înregistrarea"
+  },
   "firstName": "Prenume",
   "lastName": "Nume",
   "login": "Conectează-te",
+  "or": "sau",
   "password": "Parolă",
-  "passwordsDoNotMatch": "Parolele nu coincid.",
+  "passwordRequirements": {
+    "met": "{{requirement}} — îndeplinit",
+    "minLength": "Minimum 8 caractere",
+    "notMet": "{{requirement}} — neîndeplinit",
+    "number": "Cel puțin o cifră",
+    "special": "Cel puțin un caracter special",
+    "uppercase": "Cel puțin o literă mare (A–Z)"
+  },
+  "passwordStrength": {
+    "accessibility": "Puterea parolei: {{strength}}",
+    "empty": "Alege o parolă",
+    "fair": "Moderată",
+    "good": "Bună",
+    "hint": "Pentru o parolă mai puternică, folosește minimum 12 caractere.",
+    "strong": "Puternică",
+    "title": "Puterea parolei",
+    "weak": "Slabă"
+  },
   "register": "Creează cont",
-  "success": "Contul a fost creat. Verifică emailul pentru confirmare.",
-  "title": "Creează un cont"
+  "secureRegister": "Datele tale sunt protejate",
+  "terms": {
+    "hint": "Acceptă termenii pentru a continua, inclusiv cu Google.",
+    "label": "Accept Termenii și condițiile și confirm că am citit Politica de confidențialitate."
+  },
+  "title": "Hai să ne cunoaștem",
+  "validation": {
+    "confirmPasswordRequired": "Confirmă parola.",
+    "emailInvalid": "Introdu o adresă de email validă.",
+    "emailRequired": "Introdu adresa de email.",
+    "firstNameRequired": "Introdu prenumele.",
+    "lastNameRequired": "Introdu numele.",
+    "passwordRequirements": "Completează cerințele parolei de mai jos.",
+    "passwordsDoNotMatch": "Parolele nu coincid.",
+    "termsRequired": "Acceptă termenii pentru a continua."
+  }
 }

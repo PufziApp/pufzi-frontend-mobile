@@ -1,12 +1,31 @@
 {
-  "continueWithGoogle": "Continue with Google",
-  "description": "Sign in to continue to Pufzi.",
+  "brandName": "Pufzi",
+  "description": "Their care starts with you.",
   "email": "Email",
-  "forgotPassword": "Forgot your password?",
+  "errors": {
+    "credentials": "Check your email and password, then try again.",
+    "denied": "Sign-in is not allowed for this account. Please contact support.",
+    "invalidRequest": "We couldn’t validate the submitted details. Check the form and try again.",
+    "locked": "Access to this account is temporarily locked. Please try again later.",
+    "network": "We can’t reach the server. Check your internet connection and try again.",
+    "rateLimited": "There have been too many attempts. Please wait a little before trying again.",
+    "title": "We couldn’t sign you in",
+    "unavailable": "Something went wrong temporarily. Please try again.",
+    "waitTitle": "Try again shortly"
+  },
+  "forgotPassword": "Forgot password?",
+  "groomingBadge": "Care for your pets",
   "login": "Sign in",
-  "noAccount": "Don't have an account?",
+  "noAccount": "New to Pufzi?",
+  "or": "or",
   "password": "Password",
   "register": "Create an account",
-  "rememberMe": "Remember me",
-  "title": "Welcome back"
+  "retryIn": "Try again in {{seconds}} s",
+  "secureLogin": "Your data is protected",
+  "title": "Welcome back",
+  "validation": {
+    "emailRequired": "Enter your email address.",
+    "invalidEmail": "Enter a valid email address.",
+    "passwordTooShort": "Your password must contain at least 8 characters."
+  }
 }

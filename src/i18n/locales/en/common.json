@@ -1,5 +1,16 @@
 {
   "continueWithGoogle": "Continue with Google",
   "or": "or",
+  "preferences": {
+    "appearance": "App appearance",
+    "closeMenu": "Close menu",
+    "color": "Color",
+    "dark": "Dark",
+    "language": "App language",
+    "light": "Light",
+    "mode": "Mode",
+    "orange": "Warm orange",
+    "sage": "Sage green"
+  },
   "welcome": "Welcome to PufZi"
 }

@@ -1,5 +1,16 @@
 {
   "continueWithGoogle": "Folytatás Google-fiókkal",
   "or": "vagy",
+  "preferences": {
+    "appearance": "Az alkalmazás megjelenése",
+    "closeMenu": "Menü bezárása",
+    "color": "Szín",
+    "dark": "Sötét",
+    "language": "Az alkalmazás nyelve",
+    "light": "Világos",
+    "mode": "Mód",
+    "orange": "Meleg narancssárga",
+    "sage": "Zsályazöld"
+  },
   "welcome": "Üdvözlünk a PufZi-ban"
 }

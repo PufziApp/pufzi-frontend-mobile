@@ -1,32 +1,30 @@
 {
-  "features": {
-    "booking": {
-      "description": "Choose the day and time that works for you",
-      "title": "Book with ease"
-    },
-    "pet": {
-      "description": "Clear services and prices for your pet",
-      "title": "Choose a service"
-    },
-    "salons": {
-      "description": "Find the right place near you",
-      "title": "Discover salons"
-    }
+  "error": "We couldn't save your preference. Please try again.",
+  "final": {
+    "description": "Discover salons, choose the right service and book it in just a few moments.",
+    "salons": "Nearby salons",
+    "services": "Clear services",
+    "time": "Your free time",
+    "title": "Their appointment. Made much simpler."
   },
   "intro": {
-    "confirmed": "Booking confirmed",
-    "date": "Today · 2:30 PM",
-    "description": "Discover salons, choose the right service and book in just a few moments.",
     "petDescription": "Golden Retriever",
-    "petName": "Max",
-    "salon": "Paw Studio · 1.2 km",
-    "service": "Full grooming",
-    "title": "Their appointment. Made simple."
+    "petName": "Max"
   },
   "start": "Get started",
-  "welcome": {
-    "description": "Find the right grooming salon and book without calls or wasted time.",
-    "footer": "Quick for you. More time for them.",
-    "title": "Everything for their appointment, in one place."
+  "story": {
+    "animal": "Pet",
+    "booking": "Booking",
+    "chooseTime": "Choose a time",
+    "confirmed": "Confirmed",
+    "confirmedDate": "Today · 14:30",
+    "confirmedTitle": "Appointment confirmed",
+    "firstTime": "10:00",
+    "grooming": "Grooming",
+    "salon": "Paw Studio · 1.2 km",
+    "selectedTime": "14:30",
+    "serviceDescription": "Max is getting ready for some pampering",
+    "serviceTitle": "Full grooming",
+    "today": "Today"
   }
 }

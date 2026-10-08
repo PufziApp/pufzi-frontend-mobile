@@ -1,30 +1,30 @@
-import { Animated, Image } from 'react-native'
+import { Image, View } from 'react-native'
 
-type OnboardingLogoProps = {
-  opacity: Animated.Value
-  scale: Animated.Value
-  translateY: Animated.Value
+type Props = {
+  size: number
+  top: number
 }
 
-export const OnboardingLogo = ({ opacity, scale, translateY }: OnboardingLogoProps) => {
+export const OnboardingLogo = ({ size, top }: Props) => {
   return (
-    <Animated.View
+    <View
       style={{
-        alignSelf: 'center',
+        position: 'absolute',
+        top,
+        left: 0,
+        right: 0,
+        zIndex: 20,
         alignItems: 'center',
-        marginBottom: 24,
-        opacity,
-        transform: [{ translateY }, { scale }],
       }}
     >
       <Image
         source={require('../../../assets/LogoPufziColor.png')}
         resizeMode="contain"
         style={{
-          width: 105,
-          height: 105,
+          width: size,
+          height: size,
         }}
       />
-    </Animated.View>
+    </View>
   )
 }

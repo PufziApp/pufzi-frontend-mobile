@@ -1,12 +1,31 @@
 {
-  "continueWithGoogle": "Folytatás Google-fiókkal",
-  "description": "Jelentkezz be a Pufzi folytatásához.",
+  "brandName": "Pufzi",
+  "description": "A gondoskodás nálad kezdődik.",
   "email": "E-mail",
+  "errors": {
+    "credentials": "Ellenőrizd az e-mail-címed és a jelszavad, majd próbáld újra.",
+    "denied": "Ezzel a fiókkal nem lehet bejelentkezni. Fordulj az ügyfélszolgálathoz.",
+    "invalidRequest": "Nem sikerült ellenőrizni a megadott adatokat. Ellenőrizd az űrlapot, és próbáld újra.",
+    "locked": "A fiókhoz való hozzáférés átmenetileg zárolva van. Próbáld újra később.",
+    "network": "Nem érjük el a szervert. Ellenőrizd az internetkapcsolatot, és próbáld újra.",
+    "rateLimited": "Túl sok próbálkozás történt. Várj egy kicsit, mielőtt újra próbálkozol.",
+    "title": "Nem sikerült bejelentkezni",
+    "unavailable": "Átmeneti hiba történt. Kérjük, próbáld újra.",
+    "waitTitle": "Próbáld újra egy kicsit később"
+  },
   "forgotPassword": "Elfelejtetted a jelszavad?",
+  "groomingBadge": "Kedvenceid gondozása",
   "login": "Bejelentkezés",
   "noAccount": "Még nincs fiókod?",
+  "or": "vagy",
   "password": "Jelszó",
   "register": "Fiók létrehozása",
-  "rememberMe": "Emlékezz rám",
-  "title": "Üdv újra"
+  "retryIn": "Próbáld újra {{seconds}} mp múlva",
+  "secureLogin": "Adataid biztonságban vannak",
+  "title": "Üdv újra!",
+  "validation": {
+    "emailRequired": "Add meg az e-mail-címed.",
+    "invalidEmail": "Adj meg egy érvényes e-mail-címet.",
+    "passwordTooShort": "A jelszónak legalább 8 karakterből kell állnia."
+  }
 }

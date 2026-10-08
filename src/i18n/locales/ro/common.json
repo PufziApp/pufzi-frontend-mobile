@@ -1,5 +1,16 @@
 {
   "continueWithGoogle": "Continuă cu Google",
   "or": "sau",
+  "preferences": {
+    "appearance": "Aspectul aplicației",
+    "closeMenu": "Închide meniul",
+    "color": "Culoare",
+    "dark": "Întunecat",
+    "language": "Limba aplicației",
+    "light": "Luminos",
+    "mode": "Mod",
+    "orange": "Portocaliu cald",
+    "sage": "Verde salvie"
+  },
   "welcome": "Bine ai venit la PufZi"
 }
