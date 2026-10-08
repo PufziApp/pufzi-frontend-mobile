@@ -14,32 +14,25 @@ export const PufziFormFooter = ({ text, actionText, onPress }: Props) => {
     <View
       style={{
         flexDirection: 'row',
+        flexWrap: 'wrap',
         justifyContent: 'center',
         alignItems: 'center',
-        gap: 5,
+        columnGap: 5,
         marginTop: 4,
       }}
     >
-      <Text
-        variant="bodyMedium"
-        style={{
-          color: theme.colors.onSurfaceVariant,
-        }}
-      >
-        {text}
-      </Text>
-
+      <Text style={{ fontSize: 14, color: theme.colors.onSurfaceVariant }}>{text}</Text>
       <Pressable
+        accessibilityRole="button"
         onPress={onPress}
-        style={{
-          paddingVertical: 6,
-        }}
+        style={{ minHeight: 44, justifyContent: 'center', paddingVertical: 10 }}
       >
         <Text
-          variant="bodyMedium"
           style={{
-            color: theme.colors.primary,
-            fontWeight: '800',
+            fontSize: 14,
+            color: theme.colors.onSurface,
+            fontWeight: '700',
+            textDecorationLine: 'underline',
           }}
         >
           {actionText}

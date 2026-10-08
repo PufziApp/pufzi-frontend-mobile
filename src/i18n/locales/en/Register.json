@@ -1,20 +1,50 @@
 {
   "alreadyHaveAccount": "Already have an account?",
-  "backToLogin": "Back to sign in",
-  "brandName": "Pufzi",
-  "checkEmailDescription": "We sent a confirmation link to",
-  "checkEmailTitle": "Check your email",
   "confirmPassword": "Confirm password",
-  "description": "Create your Pufzi account and easily book grooming appointments.",
+  "description": "Create an account for you and your pet.",
   "email": "Email",
+  "errors": {
+    "description": "Please try again. If you already have an account, sign in.",
+    "title": "We couldn’t complete your registration"
+  },
   "firstName": "First name",
-  "groomingBadge": "Grooming appointments",
   "lastName": "Last name",
   "login": "Sign in",
+  "or": "or",
   "password": "Password",
-  "passwordsDoNotMatch": "Passwords do not match.",
+  "passwordRequirements": {
+    "met": "{{requirement}} — met",
+    "minLength": "At least 8 characters",
+    "notMet": "{{requirement}} — not met",
+    "number": "At least one number",
+    "special": "At least one special character",
+    "uppercase": "At least one uppercase letter (A–Z)"
+  },
+  "passwordStrength": {
+    "accessibility": "Password strength: {{strength}}",
+    "empty": "Choose a password",
+    "fair": "Fair",
+    "good": "Good",
+    "hint": "For a stronger password, use at least 12 characters.",
+    "strong": "Strong",
+    "title": "Password strength",
+    "weak": "Weak"
+  },
   "register": "Create account",
-  "secureRegister": "Your account and data are protected",
-  "success": "Your account was created. Check your email to confirm it.",
-  "title": "Create an account"
+  "secureRegister": "Your data is protected",
+  "terms": {
+    "hint": "Accept the terms to continue, including with Google.",
+    "label": "I accept the Terms and Conditions and acknowledge that I have read the Privacy Policy."
+  },
+  "title": "Let’s get to know you",
+  "validation": {
+    "confirmPasswordRequired": "Confirm your password.",
+    "emailInvalid": "Enter a valid email address.",
+    "emailRequired": "Enter your email address.",
+    "firstNameRequired": "Enter your first name.",
+    "lastNameRequired": "Enter your last name.",
+    "passwordRequirements": "Meet the password requirements below.",
+    "passwordsDoNotMatch": "The passwords do not match.",
+    "termsRequired": "Accept the terms to continue."
+  }
 }

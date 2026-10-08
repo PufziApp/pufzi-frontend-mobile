@@ -2,7 +2,6 @@ import { useState } from 'react'
 import type { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { useTranslation } from 'react-i18next'
 
-import { PufziAuthBrand } from '../../../components/PufziAuthBrand/PufziAuthBrand'
 import { PufziAuthHeader } from '../../../components/PufziAuthHeader/PufziAuthHeader'
 import { PufziAuthLayout } from '../../../components/PufziAuthLayout/PufziAuthLayout'
 import { PufziSecureText } from '../../../components/PufziSecureText/PufziSecureText'
@@ -52,10 +51,8 @@ export const RegisterScreen = ({ navigation }: Props) => {
   }
 
   return (
-    <PufziAuthLayout>
-      <PufziAuthBrand brandName={t('brandName')} badgeText={t('groomingBadge')} />
-
-      <PufziAuthHeader title={t('title')} description={t('description')} />
+    <PufziAuthLayout variant="register">
+      <PufziAuthHeader title={t('title')} description={t('description')} align="left" />
 
       <RegisterForm
         onLogin={() => {

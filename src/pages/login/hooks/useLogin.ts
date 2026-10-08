@@ -5,5 +5,6 @@ import { loginApi } from '../api/loginApi'
 export const useLogin = () => {
   return useMutation({
     mutationFn: loginApi,
+    retry: false,
   })
 }

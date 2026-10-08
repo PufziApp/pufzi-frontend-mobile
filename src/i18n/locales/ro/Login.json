@@ -1,15 +1,31 @@
 {
   "brandName": "Pufzi",
-  "continueWithGoogle": "Continuă cu Google",
-  "description": "Conectează-te pentru a continua în Pufzi.",
+  "description": "Îngrijirea lui începe cu tine.",
   "email": "Email",
+  "errors": {
+    "credentials": "Verifică emailul și parola, apoi încearcă din nou.",
+    "denied": "Conectarea nu este permisă pentru acest cont. Contactează echipa de suport.",
+    "invalidRequest": "Nu am putut valida datele trimise. Verifică formularul și încearcă din nou.",
+    "locked": "Accesul la cont este blocat temporar. Încearcă din nou mai târziu.",
+    "network": "Nu ne putem conecta la server. Verifică conexiunea la internet și încearcă din nou.",
+    "rateLimited": "Au fost prea multe încercări. Așteaptă puțin înainte să încerci din nou.",
+    "title": "Nu te-am putut conecta",
+    "unavailable": "A apărut o problemă temporară. Te rugăm să încerci din nou.",
+    "waitTitle": "Încearcă din nou puțin mai târziu"
+  },
   "forgotPassword": "Ai uitat parola?",
-  "groomingBadge": "Programări pentru grooming",
+  "groomingBadge": "Îngrijire pentru animăluțe",
   "login": "Conectează-te",
   "noAccount": "Nu ai cont?",
+  "or": "sau",
   "password": "Parolă",
   "register": "Creează un cont",
-  "rememberMe": "Ține-mă minte",
+  "retryIn": "Încearcă din nou în {{seconds}} s",
   "secureLogin": "Datele tale sunt protejate",
-  "title": "Bine ai revenit"
+  "title": "Bine ai revenit",
+  "validation": {
+    "emailRequired": "Introdu adresa de email.",
+    "invalidEmail": "Introdu o adresă de email validă.",
+    "passwordTooShort": "Parola trebuie să aibă cel puțin 8 caractere."
+  }
 }
